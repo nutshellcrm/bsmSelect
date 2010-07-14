@@ -51,8 +51,12 @@ The newly created select default option is the original select title attribute:
 
 * listType:
 
-  * Specify what type of list will be created as part of the bsmSelect.
-  * Allowed values: 'ol' or 'ul'
+  * Specify what list will be created or used as part of the bsmSelect.
+  * Can accept a callback that accepts the original <select> as an argument and returns a jQuery object with a single list.
+  * Allowed values:
+      * 'ol'
+      * 'ul'
+      * function(originalSelect) { // your code; return $('<li>'); }
   * Default: 'ol'
 
 * sortable:
@@ -168,9 +172,18 @@ The newly created select default option is the original select title attribute:
   * Class given to the highlight <span>.
   * Default: 'bsmHighlight'
 
+* originalClass:
+
+  * Class given to the original <select>.
+  * Default: 'bsmOriginalSelect'
+
 ## History ##
 
-github latest:
+Nutshell contributions:
+  * Only run bsmSelect once per select
+  * Allow usage of an existing list to use as the bin (in case you want it elsewhere in the DOM)
+
+vicb's github latest:
 
   * improved custom animations
   * support for optgroup

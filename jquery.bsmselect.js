@@ -58,12 +58,16 @@
       });
 
       conf.$selectRemoved = $("<select>");
-
-      conf.$ol = $("<" + conf.listType + ">", {
-        "class" : conf.listClass,
-        id: conf.listClass + conf.index
-      });
-
+      
+      if (typeof conf.listType == 'function') {
+          conf.$ol = conf.listType(conf.$original);
+      } else {
+          conf.$ol = $("<" + conf.listType + ">", {
+              "class" : conf.listClass,
+              id: conf.listClass + conf.index
+            });
+      }
+      
       conf.$container = $("<div>", {
         "class":  conf.containerClass,
         id: conf.containerClass + conf.index
@@ -74,8 +78,11 @@
       conf.$original
         .addClass(conf.originalClass)
         .change(function(e) {originalChangeEvent.call(this, e, conf);})
-        .wrap(conf.$container).before(conf.$select).before(conf.$ol);
-
+        .wrap(conf.$container).before(conf.$select);
+        
+      // if the list isn't already in the document, add it (it might be inserted by a custom callback)
+      if (! conf.$ol.parent().length) conf.$original.before(conf.$ol);
+      
       $("label[for=" + conf.$original.attr('id') + "]").attr("for", conf.$select.attr('id'));
 
       if (conf.sortable) { $.fn.bsmSelect.plugins.makeSortable(conf); }
@@ -353,6 +360,9 @@
     // Default configuration
     conf: {
       listType: 'ol',                             // Ordered list 'ol', or unordered list 'ul'
+                                                  // or a function that accepts the original <select> and returns
+                                                  // a jQuery object with a single <ul>
+                                                  // 
       sortable: false,                            // Should the list be sortable?
       highlight: false,                           // Use the highlight feature?
       animate: false,                             // Animate the the adding/removing of items in the list?
