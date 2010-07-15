@@ -56,7 +56,7 @@ The newly created select default option is the original select title attribute:
   * Allowed values:
       * 'ol'
       * 'ul'
-      * function(originalSelect) { // your code; return $('<li>'); }
+      * function(originalSelect) { // your code; return $('<ul>'); }
   * Default: 'ol'
 
 * sortable:
@@ -165,6 +165,8 @@ The newly created select default option is the original select title attribute:
 * removeClass:
 
   * Class given to the remove link in each list item.
+  * Any element found in the <li> with this class will remove it.
+  * If you give the <li> this class, clicking anywhere on the <li> will remove it.
   * Default: 'bsmListItemRemove'
 
 * highlightClass:
