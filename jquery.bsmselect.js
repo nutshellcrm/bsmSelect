@@ -60,7 +60,7 @@
       conf.$selectRemoved = $('<select>');
       
       if (typeof conf.listType == 'function') {
-          conf.$ol = conf.listType(conf.$original);
+          conf.$ol = conf.listType(conf.$original).addClass(conf.listClass);
       } else {
           conf.$ol = $('<' + conf.listType + '>', {
               'class' : conf.listClass,
