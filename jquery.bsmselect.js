@@ -240,7 +240,7 @@
 
     var $removeLink = $('<a>', {
       href: '#',
-      'class': conf.removeClass,
+      'class': conf.removeClass
     }).prepend(conf.removeLabel);
 
     var $itemLabel = $('<span>', {
