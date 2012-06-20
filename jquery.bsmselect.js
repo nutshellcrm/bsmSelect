@@ -83,7 +83,7 @@
       // if the list isn't already in the document, add it (it might be inserted by a custom callback)
       if (! conf.$ol.parent().length) conf.$original.before(conf.$ol);
       
-      if (conf.$original.attr('id').length) {
+      if (conf.$original.attr('id')) {
           $('label[for=' + conf.$original.attr('id') + ']').attr('for', conf.$select.attr('id'));
       }
 
